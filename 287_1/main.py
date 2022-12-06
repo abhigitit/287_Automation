@@ -69,10 +69,6 @@ if __name__ == '__main__':
         send_button.click()
         time.sleep(5)
 
-        if i == 0:
-            message_box.send_keys(in_message)
-            send_button.click()
-
         # Extract the response to the input message
         last_response_xpath = "/html/body/div[1]/div[1]/div[2]/div/div/div[3]/div/div/section/div[last()]/div/div/div/div[1]"
         time.sleep(5)
