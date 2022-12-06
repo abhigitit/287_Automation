@@ -1,15 +1,17 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from dotenv import load_dotenv
-import os
+import spacy
 import time
 import csv
+import os
 
 data = list
 
 
 def open_browser():
     browser.get('https://web.telegram.org/k/#@Quickchat_Emerson_bot')
-    time.sleep(10)
+    time.sleep(5)
 
 
 def open_chat():
@@ -29,34 +31,71 @@ def read_data(filename):
     return d
 
 
+def preprocess_word(word):
+    word = word.lower()
+    res = ''
+    for s in word:
+        if s.isalpha() or s == ' ' or s.isnumeric():
+            res += s
+    return res
+
+
 if __name__ == '__main__':
+    start_time = time.time()
     load_dotenv()
-    fp = webdriver.FirefoxProfile(os.environ.get('FIREFOX_PROFILE'))
+    fp = webdriver.FirefoxProfile(os.environ.get('FIREFOX_PROFILE_PATH'))
     browser = webdriver.Firefox(executable_path='drivers/geckodriver', firefox_profile=fp)
     open_browser()
     open_chat()
-    time.sleep(8)
+    time.sleep(5)
 
     data = read_data("data.csv")
 
+    expected_responses = None
+    positive_results = 0
+    negative_results = 0
     for i in range(len(data)):
         in_message = data[i][0]
-        out_messages = data[i][1]
-        out_messages = out_messages.split(",")
-        message_box = browser.find_element("xpath",
-                                           "//body/div[@id='page-chats']/div[@id='main-columns']/div["
-                                           "@id='column-center']/div[1]/div[1]/div[4]/div[1]/div[1]/div["
-                                           "1]/div[8]/div[1]/div[1]")
-        message_box.send_keys(in_message)
-        message_box = browser.find_element("xpath",
-                                           "//body/div[@id='page-chats']/div[@id='main-columns']/div["
-                                           "@id='column-center']/div[1]/div[1]/div[4]/div[1]/div[5]")
+        expected_responses = data[i][1].split(",")
 
-        message_box.click()
-        time.sleep(8)
-        ids = browser.find_element("xpath", "//div[@class='message spoilers-container']").text
-        output = ids
-        print(output[-1])
-        time.sleep(2)
+        message_box = browser.find_element(By.XPATH, "//body/div[@id='page-chats']/div[@id='main-columns']/div[@id='column-center']/div[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[8]/div[1]/div[1]")
+        message_box.send_keys(in_message)
+
+        send_button = browser.find_element(By.XPATH, "//body/div[@id='page-chats']/div[@id='main-columns']/div[@id='column-center']/div[1]/div[1]/div[4]/div[1]/div[5]")
+        send_button.click()
+
+        last_response_xpath = "/html/body/div[1]/div[1]/div[2]/div/div/div[3]/div/div/section/div[last()]/div/div/div/div[1]"
+
+        time.sleep(5)
+        response = browser.find_element(By.XPATH, last_response_xpath)
+        actual_response = response.text.split('\n')[0]
+
+        # Perform cosine similarity check
+        nlp = spacy.load('en_core_web_sm')
+
+        actual_response = preprocess_word(actual_response)
+        actual_out = nlp(actual_response)
+        similarity = 0
+        for expected_response in expected_responses:
+            expected_out = nlp(expected_response)
+            simi2 = actual_out.similarity(expected_out)
+            similarity = max(similarity, simi2)
+
+        print("Test case %s:" % str(i))
+        print("Input: %s" % in_message)
+        print("Output: %s" % actual_response)
+        print("Similarity: %s" % similarity)
+        if similarity > 0.40:
+            positive_results += 1
+            print("True")
+        else:
+            negative_results += 1
+            print("False")
+        print()
+
+    end_time = time.time()
+    print("Total positive results: %d" % positive_results)
+    print("Total negative results: %d" % negative_results)
+    print("Total time consumed: %d secs" % (end_time - start_time))
 
     browser.quit()
