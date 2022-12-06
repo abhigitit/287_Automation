@@ -1,0 +1,71 @@
+1670305655777	geckodriver	INFO	Listening on 127.0.0.1:50292
+1670305657527	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "50293" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/fr/yxnbjc49785fv3t1j75vx2w00000gn/T/rust_mozprofileqXadk8"
+1670305658103	Marionette	INFO	Marionette enabled
+1670305658429	Marionette	INFO	Listening on port 50299
+Read port: 50299
+WebDriver BiDi listening on ws://127.0.0.1:50293
+1670305658858	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:50293/devtools/browser/e36260d1-9760-49d2-a6a2-5e95af1e7dfe
+JavaScript warning: https://web.telegram.org/k/main.95909eb56d699f42aabb.bundle.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: , line 0: uncaught exception: Object
+JavaScript error: resource://gre/modules/PromiseWorker.jsm, line 106: Error: Could not get children of file(/var/folders/fr/yxnbjc49785fv3t1j75vx2w00000gn/T/rust_mozprofileqXadk8/thumbnails) because it does not exist
+console.error: (new TypeError("topBrowsingContext is null", "resource://devtools/server/actors/watcher/browsing-context-helpers.sys.mjs", 387))
+1670306245585	geckodriver	INFO	Listening on 127.0.0.1:50485
+1670306246109	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "50486" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/fr/yxnbjc49785fv3t1j75vx2w00000gn/T/rust_mozprofileF1YmJx"
+1670306246962	Marionette	INFO	Marionette enabled
+1670306247056	Marionette	INFO	Listening on port 50491
+Read port: 50491
+WebDriver BiDi listening on ws://127.0.0.1:50486
+1670306247243	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/fr/yxnbjc49785fv3t1j75vx2w00000gn/T/rust_mozprofileF1YmJx/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:50486/devtools/browser/73e47e94-3b86-49c9-aaa7-1d8f0ff3d820
+JavaScript warning: https://web.telegram.org/k/main.95909eb56d699f42aabb.bundle.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1670306292025	geckodriver	INFO	Listening on 127.0.0.1:50538
+1670306292553	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "50539" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/fr/yxnbjc49785fv3t1j75vx2w00000gn/T/rust_mozprofilenirnHD"
+1670306293076	Marionette	INFO	Marionette enabled
+1670306293112	Marionette	INFO	Listening on port 50544
+Read port: 50544
+WebDriver BiDi listening on ws://127.0.0.1:50539
+1670306293281	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/fr/yxnbjc49785fv3t1j75vx2w00000gn/T/rust_mozprofilenirnHD/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:50539/devtools/browser/211c2b28-8e80-4ed4-9453-5607ac735fa4
+JavaScript warning: https://web.telegram.org/k/main.95909eb56d699f42aabb.bundle.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1670306340140	Marionette	INFO	Stopped listening on port 50491
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+1670306342697	Marionette	INFO	Stopped listening on port 50544
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+1670306346626	Marionette	INFO	Stopped listening on port 50299
+1670306559485	geckodriver	INFO	Listening on 127.0.0.1:50641
+1670306561228	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "50642" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/fr/yxnbjc49785fv3t1j75vx2w00000gn/T/rust_mozprofileHHKo61"
+1670306561779	Marionette	INFO	Marionette enabled
+1670306562045	Marionette	INFO	Listening on port 50647
+Read port: 50647
+WebDriver BiDi listening on ws://127.0.0.1:50642
+1670306562329	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:50642/devtools/browser/c08fa0ff-d2b8-4e66-9d20-1d027bd7e9d9
+JavaScript warning: https://web.telegram.org/k/main.95909eb56d699f42aabb.bundle.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: , line 0: uncaught exception: Object
+1670306575527	Marionette	INFO	Stopped listening on port 50647
+1670306791500	geckodriver	INFO	Listening on 127.0.0.1:50697
+1670306793260	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "50698" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/fr/yxnbjc49785fv3t1j75vx2w00000gn/T/rust_mozprofileXvA96E"
+1670306793746	Marionette	INFO	Marionette enabled
+1670306793947	Marionette	INFO	Listening on port 50703
+Read port: 50703
+WebDriver BiDi listening on ws://127.0.0.1:50698
+1670306794185	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:50698/devtools/browser/592bcb01-7834-4691-9bbd-f2fefba27034
+JavaScript warning: https://web.telegram.org/k/main.95909eb56d699f42aabb.bundle.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: , line 0: uncaught exception: Object
+1670306807555	Marionette	INFO	Stopped listening on port 50703
+1670307180351	geckodriver	INFO	Listening on 127.0.0.1:50763
+1670307182093	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "50764" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/fr/yxnbjc49785fv3t1j75vx2w00000gn/T/rust_mozprofilejqjew9"
+1670307182593	Marionette	INFO	Marionette enabled
+1670307182781	Marionette	INFO	Listening on port 50770
+Read port: 50770
+WebDriver BiDi listening on ws://127.0.0.1:50764
+1670307183022	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:50764/devtools/browser/059ee8e4-37b8-425a-b3d9-930aadeb7501
+JavaScript warning: https://web.telegram.org/k/main.95909eb56d699f42aabb.bundle.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: , line 0: uncaught exception: Object
+JavaScript error: resource://gre/modules/PromiseWorker.jsm, line 106: Error: Could not get children of file(/var/folders/fr/yxnbjc49785fv3t1j75vx2w00000gn/T/rust_mozprofilejqjew9/thumbnails) because it does not exist
+1670307225066	Marionette	INFO	Stopped listening on port 50770
