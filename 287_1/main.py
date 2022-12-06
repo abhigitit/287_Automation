@@ -8,12 +8,12 @@ import os
 
 data = list
 
-
+# opens the browser with the given link
 def open_browser():
     browser.get('https://web.telegram.org/k/#@Quickchat_Emerson_bot')
     time.sleep(5)
 
-
+# selects the chat window based on the xpath
 def open_chat():
     user_name = 'Emerson AI'
     links = browser.find_elements("xpath", "//a[@href]")
@@ -23,7 +23,6 @@ def open_chat():
             break
 
 
-# time.sleep(1)
 def read_data(filename):
     with open(filename) as csvfile:
         reader = csv.reader(csvfile)
@@ -31,6 +30,7 @@ def read_data(filename):
     return d
 
 
+# preprocessing the text for similarity comparision
 def preprocess_word(word):
     word = word.lower()
     res = ''
@@ -58,17 +58,23 @@ if __name__ == '__main__':
         in_message = data[i][0]
         expected_responses = data[i][1].split(",")
 
+        # Input the message into the chat textbox
         message_box = browser.find_element(By.XPATH, "//body/div[@id='page-chats']/div[@id='main-columns']/div[@id='column-center']/div[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[8]/div[1]/div[1]")
         message_box.send_keys(in_message)
 
+        # Send the input message
         send_button = browser.find_element(By.XPATH, "//body/div[@id='page-chats']/div[@id='main-columns']/div[@id='column-center']/div[1]/div[1]/div[4]/div[1]/div[5]")
         send_button.click()
 
+        # Extract the response to the input message
         last_response_xpath = "/html/body/div[1]/div[1]/div[2]/div/div/div[3]/div/div/section/div[last()]/div/div/div/div[1]"
-
         time.sleep(5)
-        response = browser.find_element(By.XPATH, last_response_xpath)
-        actual_response = response.text.split('\n')[0]
+        actual_response = None
+        try:
+            response = browser.find_element(By.XPATH, last_response_xpath)
+            actual_response = response.text.split('\n')[0]
+        except:
+            actual_response = in_message
 
         # Perform cosine similarity check
         nlp = spacy.load('en_core_web_sm')
