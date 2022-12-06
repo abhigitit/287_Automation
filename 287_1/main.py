@@ -67,10 +67,15 @@ if __name__ == '__main__':
         # Send the input message
         send_button = browser.find_element(By.XPATH, "//body/div[@id='page-chats']/div[@id='main-columns']/div[@id='column-center']/div[1]/div[1]/div[4]/div[1]/div[5]")
         send_button.click()
+        time.sleep(5)
+
+        if i == 0:
+            message_box.send_keys(in_message)
+            send_button.click()
 
         # Extract the response to the input message
         last_response_xpath = "/html/body/div[1]/div[1]/div[2]/div/div/div[3]/div/div/section/div[last()]/div/div/div/div[1]"
-        time.sleep(10)
+        time.sleep(5)
         response = browser.find_element(By.XPATH, last_response_xpath)
         actual_response = response.text.split('\n')[0]
 
