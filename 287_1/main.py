@@ -1,4 +1,5 @@
 from selenium import webdriver
+from jinja2 import Environment, FileSystemLoader
 from selenium.webdriver.common.by import By
 from dotenv import load_dotenv
 import spacy
@@ -51,12 +52,16 @@ if __name__ == '__main__':
     open_chat()
     time.sleep(5)
 
-    data = read_data("data.csv")
+    data = read_data("datasets/chatbot_memory_testcases.csv")
 
     expected_responses = None
     positive_results = 0
     negative_results = 0
+    testcases = []
     for i in range(len(data)):
+        if len(testcases) >= 10:
+            break
+
         in_message = data[i][0]
         expected_responses = data[i][1].split(",")
 
@@ -75,7 +80,6 @@ if __name__ == '__main__':
         response = browser.find_element(By.XPATH, last_response_xpath)
         actual_response = response.text.split('\n')[0]
 
-        # print(actual_response)
 
         # Perform cosine similarity check
         nlp = spacy.load('en_core_web_sm')
@@ -92,13 +96,24 @@ if __name__ == '__main__':
         print("Input: %s" % in_message)
         print("Output: %s" % actual_response)
         print("Similarity: %s" % similarity)
-        if similarity > 0.40:
-            positive_results += 1
-            print("Result: PASS")
-        else:
-            negative_results += 1
-            print("Result: FAIL")
-        print()
+
+        d = dict()
+        d["input_message"] = in_message
+        d["expected_responses"] = expected_responses
+        d["actual_response"] = actual_response
+        d["result"] = "PASS" if similarity >= 0.4 else "FAIL"
+
+        testcases.append(d)
+        context = {
+            "testcases": testcases
+        }
+
+        environment = Environment(loader=FileSystemLoader("templates/"))
+        results_template = environment.get_template("template.html")
+
+        results_filename = "students_results.html"
+        with open(results_filename, mode="w", encoding="utf-8") as results:
+            results.write(results_template.render(context))
 
     end_time = time.time()
     print("Total positive results: %d" % positive_results)

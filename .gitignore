@@ -3,3 +3,4 @@
 *.iml
 *.xml
 287_1/geckodriver.log
+.env
